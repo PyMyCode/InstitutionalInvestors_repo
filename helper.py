@@ -1,6 +1,12 @@
 
 import pandas as pd
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+iex_api_key = os.getenv('IEX_API_KEY')
 
 def get_latest_updates(*symbols):
     for i in symbols:
@@ -12,6 +18,6 @@ def get_latest_updates(*symbols):
         
         df = requests.get(api_url).json()
         
-        # print(df)
+        print(df)
 
 get_latest_updates('FB')
