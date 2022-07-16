@@ -1,22 +1,41 @@
 
-import pandas as pd
+#import pandas as pd
 import requests
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
+#getting api_token
 iex_api_key = os.getenv('IEX_API_KEY')
 
+
+def api_url(ticker):
+
+    #creating the api_url
+    base_URL = "https://cloud.iexapis.com/"
+    version = "stable/"
+    endpoint_path = f"stock/{ticker}/quote/"
+    query_string = f"token={iex_api_key}"
+
+    return f"{base_URL}{version}{endpoint_path}?{query_string}"
+
 def get_latest_updates(*symbols):
+    
+    # iterating through each symbol
     for i in symbols:
         ticker = i
         
-        #creating the API reuqest
-        api_url = f'https://cloud.iexapis.com/stable/stock/{ticker}/quote?token={iex_api_key}'
+        # making a request
+        r = requests.get(api_url(ticker))
         
-        df = requests.get(api_url).json()
-        
+        # converting a JSON response to a dict
+        df = r.json()
+
+        # printing
         print(df)
 
-get_latest_updates('FB')
+def main():
+    get_latest_updates('TSLA')
+
+main()
