@@ -1,2 +1,5 @@
-#env files
-.env
+#all text files
+*.txt
+
+#all excel files
+*.xlsx
