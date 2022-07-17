@@ -1,4 +1,4 @@
-# Stock Comparison
+# Institutional Investors
 
 An Flask web app to analyze then institutional investors of S&P500 companies.
 
