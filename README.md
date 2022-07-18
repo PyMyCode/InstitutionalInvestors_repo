@@ -9,6 +9,7 @@ An Flask web app to analyze then institutional investors of S&P500 companies.
 - changed repo name
 
 ### ToDo
+- Create investments table and use ids from the other tables are foreign IDs
 - go through stock_error_list 
 - current price to get the total value of each investor per share
 - creating the webpages

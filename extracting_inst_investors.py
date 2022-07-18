@@ -28,7 +28,7 @@ except Error as e:
 cur.execute('CREATE TABLE IF NOT EXISTS investors (Holder TEXT)')
 db.commit()
 
-count = 58
+count = 0
 # going through each stock in s&p500 databse
 for s in stock_list:
 
