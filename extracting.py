@@ -17,7 +17,7 @@ except Error as e:
 cur = db.cursor()
 
 # getting stock symbols from SQL database
-sql_str = "SELECT symbol FROM stocks LIMIT 5"
+sql_str = "SELECT symbol FROM stocks"
 try:
     #
     stock_list = cur.execute(sql_str).fetchall()

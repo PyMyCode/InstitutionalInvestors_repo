@@ -41,7 +41,7 @@ for s in stock_list:
         # creating the ticker object
         t = yf.Ticker(s)
 
-        # adding just investor name and number of shares
+        # adding just investor name of shares
         inst_holders_df = t.institutional_holders[["Holder"]]
 
         # adding to the sql table

@@ -7,9 +7,14 @@ An Flask web app to analyze then institutional investors of S&P500 companies.
 - creating the inst_investor table in the database (289 nvestors)
 - code to extract institutional investor info using yfinance 
 - changed repo name
+- made changes according to stock_error_list
 
 ### ToDo
-- Create investments table and use ids from the other tables are foreign IDs
-- go through stock_error_list 
+- stopped at 277 KR- delete 277 and run from 277 temp.py file
+- Create investments table and use ids from the other tables are  foreign IDs
+- go through  
 - current price to get the total value of each investor per share
 - creating the webpages
+
+### Sources
+S&P500 List - (https://github.com/datasets/s-and-p-500-companies/blob/master/data/constituents.csv)
