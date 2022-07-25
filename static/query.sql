@@ -1,7 +1,8 @@
---AEW Capital Management, LP
-CREATE TABLE investments (
-    inst_investors_id INTEGER,
-    stocks_id INTEGER,
-    shares INTEGER,
-    FOREIGN KEY(inst_investors_id) REFERENCES inst_investors(id),
-    FOREIGN KEY(stocks_id) REFERENCES stocks(id))
+SELECT   COUNT(*), inst_investors.name, inst_investors_id
+FROM investments
+JOIN inst_investors
+    ON investments.inst_investors_id = inst_investors.id
+JOIN stocks
+    ON investments.stocks_id = stocks.id
+GROUP BY inst_investors_id
+ORDER BY COUNT(*) DESC

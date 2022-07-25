@@ -11,12 +11,14 @@ An Flask web app to analyze then institutional investors of S&P500 companies.
 - made changes according to stock_error_list
 
 ### ToDo
-- go through ivestment table
+- go through investment table
 - Quickest way to get the current price
 - a method to the search for investors
 - Webpages
     - institional Investor Overview
     - Stock Overview
+        - get a clickable list
+        - create the overview page
 
 ### Sources
 S&P500 List - (https://github.com/datasets/s-and-p-500-companies/blob/master/data/constituents.csv)
