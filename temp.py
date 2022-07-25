@@ -19,11 +19,19 @@ cur = db.cursor()
 
 # getting stock symbols from sql database
 try:
-    stock_list = cur.execute("SELECT * FROM stocks").fetchall()
+    stock_list = cur.execute("SELECT * FROM stocks WHERE id >= 503").fetchall()
 except Error as e:
     print(e)
 
+count = 0
+
 for s in stock_list:
+
+    #stopper
+    count += 1
+    if count % 10 == 0:
+        print("check!!!")
+
 
     # tracker
     print(f"{s[0]} {s[1]}")
@@ -54,6 +62,7 @@ for s in stock_list:
             try:
                 # getting investor id
                 inst_investors_id = cur.execute("SELECT id FROM inst_investors WHERE name LIKE ?", [row["Holder"]]).fetchall()[0][0]
+                print(inst_investors_id)
             except:
                 # adding investor if does not exists
                 cur.execute("INSERT INTO inst_investors (name) VALUES (?)", [row["Holder"]])

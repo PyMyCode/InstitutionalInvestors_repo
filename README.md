@@ -10,7 +10,7 @@ An Flask web app to analyze then institutional investors of S&P500 companies.
 - made changes according to stock_error_list
 
 ### ToDo
-- stopped at 277 KR- delete 277 and run from 277 temp.py file
+- redo investments from stock id 450, check why double numbers?
 - Create investments table and use ids from the other tables are  foreign IDs
 - go through  
 - current price to get the total value of each investor per share
