@@ -9,10 +9,12 @@
 </nav>
 <body>
     <div class="list-group">
-        <a href="/company_overview" class="list-group-item list-group-item-action">XXX</a>
-        <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-        <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-      </div>
+        
+        {% for stock in stocks_list %}
+            <a href="/company_overview" class="list-group-item list-group-item-action">{{ stock[1] }} - {{ stock[2] }}</a>
+        {% endfor %}
+
+    </div>
 </body>
 
 {% endblock %}
