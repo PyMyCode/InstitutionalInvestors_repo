@@ -7,8 +7,47 @@
     <a class="nav-link active" aria-current="page" href="/companies">Companies</a>
     <a class="nav-link" href="#">institutional Investors</a>
 </nav>
+<hr> 
+<h1>{{stock_info.shortName}}</h1>
+<hr>  
 <body>
-        XXX
+    <h3>Stock Market KPIs</h3>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th scope="row">Current Stock Price ($)</th>
+                <td>{{stock_info.regularMarketPrice}}</td>
+                <th scope="row">Day Low ($)</th>
+                <td>{{stock_info.regularMarketDayLow}}</td>
+            </tr>
+            <tr>
+                <th scope="row">marketCap ($ bil)</th>
+                <td>{{ "%.1f"|format(stock_info.marketCap)}}</td>
+            </tr>
+        </tbody>
+      </table>
+
+      <h3>Institutional Investors</h3>
+
+
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Shares (mil) </th>
+                    <th scope="col">Value ($ bil)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for inv in inv_list %}
+                    <tr>
+                        <th scope="row">{{ inv[0] }}</th>
+                        <td>{{ "%.1f"|format(inv[1]) }}</td>
+                        <td>{{ "%.1f"|format(inv[4]) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
 </body>
 
 {% endblock %}

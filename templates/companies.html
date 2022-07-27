@@ -7,14 +7,28 @@
     <a class="nav-link active" aria-current="page" href="/companies">Companies</a>
     <a class="nav-link" href="#">Institutional Investors</a>
 </nav>
+<hr> 
 <body>
-    <div class="list-group">
-        
+    <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            One of three columns
+          </div>
+          <div class="col-sm">
+            One of three columns
+          </div>
+          <div class="col-sm">
+            One of three columns
+          </div>
+        </div>
+      </div>
         {% for stock in stocks_list %}
-            <a href="/company_overview" class="list-group-item list-group-item-action">{{ stock[1] }} - {{ stock[2] }}</a>
+    
+            <form action="/company_overview" method="post">
+                <input name="stock_id" type="hidden" value="{{stock[0]}}">
+                <input type="submit" value="{{stock[1]}} - {{stock[2]}}">
+            </form>
         {% endfor %}
-
-    </div>
 </body>
 
 {% endblock %}
