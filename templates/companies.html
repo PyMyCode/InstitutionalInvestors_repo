@@ -9,26 +9,14 @@
 </nav>
 <hr> 
 <body>
-    <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            One of three columns
-          </div>
-          <div class="col-sm">
-            One of three columns
-          </div>
-          <div class="col-sm">
-            One of three columns
-          </div>
-        </div>
-      </div>
+    <div class="company_container">
         {% for stock in stocks_list %}
-    
-            <form action="/company_overview" method="post">
+            <form action="/company_overview" method="post" class="company">
                 <input name="stock_id" type="hidden" value="{{stock[0]}}">
-                <input type="submit" value="{{stock[1]}} - {{stock[2]}}">
+                <input type="submit" value="{{stock[1]}} - {{stock[2]}}" class="company_name">
             </form>
         {% endfor %}
+      </div>
 </body>
 
 {% endblock %}

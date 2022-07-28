@@ -14,6 +14,35 @@ h1
   background-color: #45b0b5;
 }
 
+.company_container {
+  border: 2px solid red;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1em;
+}
+
+.company {
+  display: inline-block;
+  height: 60px;
+  padding: 2px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.company:hover {
+  background: red;
+  transition: 0.4s background;
+  cursor: pointer;
+}
+
+.company_name
+{
+  font-size: 14px;
+  background: transparent;
+  border: none;
+  display: inline-block;
+}
+
 footer
 {
     text-align: center;

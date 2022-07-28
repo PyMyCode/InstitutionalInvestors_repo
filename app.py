@@ -69,5 +69,5 @@ def company_oveview():
     # rendering the template
     return render_template("company_overview.html", stock_info = stock_info, inv_list = df.values.tolist())
 
-#@app.route('/checkouts/<transaction_id>', methods=['GET'])
-#def show_checkout(transaction_id):
+# @app.route('/checkouts/<transaction_id>', methods=['GET'])
+# def show_checkout(transaction_id):
