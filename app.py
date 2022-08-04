@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, render_template, request
 import sqlite3
 from sqlite3 import Error
 import os.path
@@ -7,7 +7,6 @@ from yfinance import Ticker
 import pandas as pd
 
 from numpy import identity
-#import yfinance as yf
 
 #initilazing Flask app
 app = Flask(__name__)
@@ -46,7 +45,6 @@ def company_oveview():
     
     # getting stock details
     stock_symbol = cur.execute("SELECT symbol FROM stocks WHERE id = ?", [stock_id]).fetchone()[0]
-    #stock_symbol = stock_symbol.fetchone()[0], file=sys.stderr)
     
     # getting stock info
     t = Ticker(stock_symbol)
@@ -76,8 +74,6 @@ def company_oveview():
     # rendering the template
     return render_template("company_overview.html", stock_info = stock_info, inv_list = df.values.tolist())
 
-# @app.route('/checkouts/<transaction_id>', methods=['GET'])
-# def show_checkout(transaction_id):
 
 @app.route("/investors")
 def investors():
@@ -91,10 +87,20 @@ def investors():
 @app.route("/investor_overview", methods=["POST"])
 def investor_oveview():
 
+    # fetching inv id
     inv_id = request.form.get("inv_id")
 
-    stock_symbol = cur.execute("SELECT symbol FROM stocks WHERE id = ?", [stock_id]).fetchone()[0]
-    #stock_symbol = stock_symbol.fetchone()[0], file=sys.stderr)
-    
+    investor_name = cur.execute("SELECT name FROM inst_investors WHERE id = ?", [inv_id]).fetchone()[0]
 
-    return render_template("investor_overview.html")
+    # fetching investments from database
+    investments = cur.execute("SELECT  symbol, stocks.name, shares, stocks.id FROM investments JOIN stocks ON investments.stocks_id = stocks.id WHERE inst_investors_id = ? ORDER BY stocks.name", [inv_id]).fetchall()
+
+    # convertign shares to millions
+    investments_list = []
+    for investment in investments:
+        investment = list(investment)
+        investment[2] = investment[2] / (10**6)
+        investments_list.append(investment)
+
+    print(investments_list, file=sys.stderr)
+    return render_template("investor_overview.html", investor_name = investor_name, investments_list = investments_list)

@@ -8,7 +8,10 @@ h1
 {
   text-align:center;
 }
-
+h5 
+{
+  text-align:center;
+}
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
   color: #fff;
   background-color: #45b0b5;
@@ -40,6 +43,18 @@ h1
   background: transparent;
   border: none;
   display: inline-block;
+}
+
+.overview_table {
+  display: inline-block;
+  padding: 2px;
+  font-weight: bold;
+}
+
+.overview_table:hover {
+  background: #45b0b5;
+  transition: 0.4s background;
+  cursor: pointer;
 }
 
 footer

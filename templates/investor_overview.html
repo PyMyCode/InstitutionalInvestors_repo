@@ -9,6 +9,33 @@
 </nav>
 <hr>
 <body>
-    Hi
+    <hr> 
+    <h1>{{ investor_name }}</h1>
+    <hr>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Stock Symbol</th>
+            <th scope="col"> Company Name </th>
+            <th scope="col">Shares (mil)*</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for investment in investments_list %}
+            <tr>
+                <th scope="row">{{ investment[0] }}</th>
+                <td>
+                <form action="/company_overview" method="post" class="overview_table">
+                    <input name="stock_id" type="hidden" value="{{investment[3]}}">
+                    <input type="submit" value="{{investment[1]}}" class="company_name">
+                </form>
+                </td>
+                <td>{{ "%.1f"|format(investment[2]) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      <i>* Number of shares as of 15/07/2022</i>
 </body>
 {% endblock %}
