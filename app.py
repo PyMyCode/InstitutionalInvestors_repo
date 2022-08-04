@@ -6,16 +6,14 @@ import sys
 from yfinance import Ticker
 import pandas as pd
 
-from numpy import identity
-
 #initilazing Flask app
 app = Flask(__name__)
 
-# connecting to SQL database
-# connecting to sqlite3
+# changing the folder path
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 db_path = os.path.join(BASE_DIR, r"static/database.db")
 
+# connecting to SQL database
 try:
     db = sqlite3.connect(db_path, check_same_thread=False)
     cur = db.cursor()
@@ -33,7 +31,6 @@ def companies():
 
     # Getting stock list
     stocks_list = cur.execute("SELECT id, symbol, name FROM stocks ORDER BY symbol")
-    # print(type(stocks_list.fetchall()), file=sys.stderr)
 
     # rendering the index template
     return render_template("companies.html", stocks_list = stocks_list)
