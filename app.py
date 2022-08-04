@@ -43,8 +43,10 @@ def company_oveview():
     # getting stock details
     stock_symbol = cur.execute("SELECT symbol FROM stocks WHERE id = ?", [stock_id]).fetchone()[0]
     
-    # getting stock info
+    # creating the Ticker Object
     t = Ticker(stock_symbol)
+
+    # getting stock info
     stock_info = t.info
 
     # converting marketcap
@@ -52,9 +54,6 @@ def company_oveview():
 
     # converting marketcap
     stock_info["sharesOutstanding"] = stock_info["sharesOutstanding"] / (10**6)
-
-    for row in stock_info:
-        print(row + ":" + str(stock_info[row]))
 
     # getting institutional ivestors
     df = t.institutional_holders
@@ -99,5 +98,4 @@ def investor_oveview():
         investment[2] = investment[2] / (10**6)
         investments_list.append(investment)
 
-    print(investments_list, file=sys.stderr)
     return render_template("investor_overview.html", investor_name = investor_name, investments_list = investments_list)

@@ -84,5 +84,26 @@ def index():
     return render_template("index.html")
 ```
 
-The first overview that the web application show is that of all the s&p500 stocks. In order to the do that, a function called *company_oveview()* is called when going to the */company_overview* route (by clicking *Companies* on the navigation bar).
+The first overview that the web application show is that of all the s&p500 stocks. In order to the do that, a function called *company()* is called when going to the */company* route (by clicking *Companies* on the navigation bar).
 
+The function gets the *id, symbol, name* of all the stocks from the *stocks* table and displays on the webpage.
+
+```python
+@app.route("/companies")
+def companies():
+
+    # Getting stock list
+    stocks_list = cur.execute("SELECT id, symbol, name FROM stocks ORDER BY symbol")
+
+    # rendering the index template
+    return render_template("companies.html", stocks_list = stocks_list)
+```
+When the user clicks any of the stocks, they are redirected to the */company_overview* route that and calls *company_overview()* function. The function also gets the *stock_id* of the respective stock via the *POST* method. Using the *stock_id*, the *stock_symbol* is extracted from the database.
+
+The stock_symbol is used to create a Ticker object that allows the user to access stock ticker data using the yfinance library.
+
+The
+
+```python
+
+```
