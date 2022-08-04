@@ -48,8 +48,6 @@ def company_oveview():
     stock_symbol = cur.execute("SELECT symbol FROM stocks WHERE id = ?", [stock_id]).fetchone()[0]
     #stock_symbol = stock_symbol.fetchone()[0], file=sys.stderr)
     
-    print(type(stock_symbol), file=sys.stderr)
-
     # getting stock info
     t = Ticker(stock_symbol)
     stock_info = t.info
@@ -57,11 +55,20 @@ def company_oveview():
     # converting marketcap
     stock_info["marketCap"] = stock_info["marketCap"] / (10**9)
 
+    # converting marketcap
+    stock_info["sharesOutstanding"] = stock_info["sharesOutstanding"] / (10**6)
+
+    for row in stock_info:
+        print(row + ":" + str(stock_info[row]))
+
     # getting institutional ivestors
     df = t.institutional_holders
 
     #converting shares to millions
     df["Shares"] = df["Shares"] / (10**6)
+
+    # % of shares to outsanding shares
+    df["Shares_percentage"] = (df["Shares"] / stock_info["sharesOutstanding"])*100
 
     #converting shares to millions
     df["Value"] = df["Value"] / (10**9)
@@ -71,3 +78,23 @@ def company_oveview():
 
 # @app.route('/checkouts/<transaction_id>', methods=['GET'])
 # def show_checkout(transaction_id):
+
+@app.route("/investors")
+def investors():
+
+    # Getting stock list
+    investors_list = cur.execute("SELECT id, name FROM inst_investors ORDER BY name")
+    
+    # rendering the index template
+    return render_template("investors.html", investors_list = investors_list)
+
+@app.route("/investor_overview", methods=["POST"])
+def investor_oveview():
+
+    inv_id = request.form.get("inv_id")
+
+    stock_symbol = cur.execute("SELECT symbol FROM stocks WHERE id = ?", [stock_id]).fetchone()[0]
+    #stock_symbol = stock_symbol.fetchone()[0], file=sys.stderr)
+    
+
+    return render_template("investor_overview.html")

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<nav class="nav nav-pills nav-fill">
+    <a class="nav-link" href="/">Homepage</a>
+    <a class="nav-link" href="/companies">Companies</a>
+    <a class="nav-link active" aria-current="page" href="/investors">Institutional Investors</a>
+</nav>
+<hr> 
+<body>
+    <div class="company_container">
+        {% for inv in investors_list %}
+            <form action="/investor_overview" method="post" class="company">
+                <input name="inv_id" type="hidden" value="{{inv[0]}}">
+                <input type="submit" value="{{inv[1]}}" class="company_name">
+            </form>
+        {% endfor %}
+      </div>
+</body>
+
+{% endblock %}

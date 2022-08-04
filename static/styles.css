@@ -15,7 +15,6 @@ h1
 }
 
 .company_container {
-  border: 2px solid red;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1em;
@@ -30,7 +29,7 @@ h1
 }
 
 .company:hover {
-  background: red;
+  background: #45b0b5;
   transition: 0.4s background;
   cursor: pointer;
 }
