@@ -81,7 +81,7 @@ def investors():
     return render_template("investors.html", investors_list = investors_list)
 
 @app.route("/investor_overview", methods=["POST"])
-def investor_oveview():
+def investor_overview():
 
     # fetching inv id
     inv_id = request.form.get("inv_id")
@@ -99,3 +99,4 @@ def investor_oveview():
         investments_list.append(investment)
 
     return render_template("investor_overview.html", investor_name = investor_name, investments_list = investments_list)
+    
